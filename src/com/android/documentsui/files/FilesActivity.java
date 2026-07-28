@@ -19,6 +19,7 @@ package com.android.documentsui.files;
 import static com.android.documentsui.OperationDialogFragment.DIALOG_TYPE_UNKNOWN;
 
 import android.app.ActivityManager.TaskDescription;
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -30,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.CallSuper;
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.FragmentManager;
 
 import com.android.documentsui.AbstractActionHandler;
@@ -52,11 +54,13 @@ import com.android.documentsui.StubProfileTabsAddons;
 import com.android.documentsui.base.DocumentInfo;
 import com.android.documentsui.base.Features;
 import com.android.documentsui.base.RootInfo;
+import com.android.documentsui.base.Shared;
 import com.android.documentsui.base.State;
 import com.android.documentsui.clipping.DocumentClipper;
 import com.android.documentsui.dirlist.AnimationView.AnimationType;
 import com.android.documentsui.dirlist.AppsRowManager;
 import com.android.documentsui.dirlist.DirectoryFragment;
+import com.android.documentsui.home.HomeDashboardFragment;
 import com.android.documentsui.services.FileOperationService;
 import com.android.documentsui.sidebar.RootsFragment;
 import com.android.documentsui.ui.DialogController;
@@ -73,10 +77,13 @@ public class FilesActivity extends BaseActivity implements AbstractActionHandler
     private static final String TAG = "FilesActivity";
     static final String PREFERENCES_SCOPE = "files";
 
+    private static final String STATE_HOME_DASHBOARD_VISIBLE = "homeDashboardVisible";
+
     private Injector<ActionHandler<FilesActivity>> mInjector;
     private ActivityInputHandler mActivityInputHandler;
     private SharedInputHandler mSharedInputHandler;
     private final ProfileTabsAddons mProfileTabsAddonsStub = new StubProfileTabsAddons();
+    private boolean mHomeDashboardVisible;
 
     public FilesActivity() {
         super(R.layout.files_activity, TAG);
@@ -90,7 +97,102 @@ public class FilesActivity extends BaseActivity implements AbstractActionHandler
 
     @Override
     protected boolean popDir() {
-        return super.popDir();
+        if (super.popDir()) {
+            return true;
+        }
+        if (isHomeDashboardEnabled() && !isHomeDashboardVisible()) {
+            showHomeDashboard();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isHomeDashboardEnabled() {
+        return getResources().getBoolean(R.bool.config_files_home_dashboard);
+    }
+
+    public boolean isHomeDashboardVisible() {
+        return mHomeDashboardVisible;
+    }
+
+    public void showHomeDashboard() {
+        final View container = findViewById(R.id.container_home);
+        if (container == null) {
+            return;
+        }
+        final FragmentManager fm = getSupportFragmentManager();
+        if (fm.findFragmentByTag(HomeDashboardFragment.TAG) == null) {
+            fm.beginTransaction()
+                    .replace(R.id.container_home, HomeDashboardFragment.newInstance(),
+                            HomeDashboardFragment.TAG)
+                    .commitNowAllowingStateLoss();
+        }
+        container.setVisibility(View.VISIBLE);
+        mHomeDashboardVisible = true;
+        final View appBar = findViewById(R.id.app_bar);
+        if (appBar != null) {
+            appBar.setVisibility(View.GONE);
+        }
+    }
+
+    public void hideHomeDashboard() {
+        final View container = findViewById(R.id.container_home);
+        if (container != null) {
+            container.setVisibility(View.GONE);
+        }
+        mHomeDashboardVisible = false;
+        final View appBar = findViewById(R.id.app_bar);
+        if (appBar != null) {
+            appBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean shouldLaunchHomeDashboard(Intent intent) {
+        if (!isHomeDashboardEnabled()) {
+            return false;
+        }
+        if (intent == null) {
+            return true;
+        }
+        if (intent.hasExtra(Shared.EXTRA_STACK)) {
+            return false;
+        }
+        final String action = intent.getAction();
+        if (DownloadManager.ACTION_VIEW_DOWNLOADS.equals(action)) {
+            return false;
+        }
+        // Settings Storage and other deep-links use ACTION_VIEW + root/document URI.
+        if (Intent.ACTION_VIEW.equals(action) && intent.getData() != null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Handles Settings Storage / root deep-links when Files is already open
+     * ({@code documentLaunchMode=intoExisting}).
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIncomingIntent(intent, /* isNewTask= */ false);
+    }
+
+    private void handleIncomingIntent(Intent intent, boolean isNewTask) {
+        if (shouldLaunchHomeDashboard(intent)) {
+            if (!isNewTask || !mHomeDashboardVisible) {
+                showHomeDashboard();
+            }
+            return;
+        }
+        hideHomeDashboard();
+        if (mState != null && mState.stack != null) {
+            mState.stack.reset();
+        }
+        if (mInjector != null && mInjector.actions != null) {
+            mInjector.actions.initLocation(intent);
+        }
     }
 
     @Override
@@ -198,6 +300,45 @@ public class FilesActivity extends BaseActivity implements AbstractActionHandler
         saveContainer.setBackgroundColor(Color.TRANSPARENT);
 
         presentFileErrors(icicle, intent);
+
+        if (icicle != null && icicle.getBoolean(STATE_HOME_DASHBOARD_VISIBLE, false)) {
+            showHomeDashboard();
+        } else if (icicle == null && shouldLaunchHomeDashboard(intent)) {
+            showHomeDashboard();
+        } else if (icicle == null) {
+            // Deep-link / VIEW root: ensure home overlay is not covering content.
+            hideHomeDashboard();
+        }
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (mDrawer != null && mDrawer.isPresent() && mDrawer.isOpen()) {
+                    mDrawer.setOpen(false);
+                    return;
+                }
+                if (mSearchManager != null && mSearchManager.isSearching()) {
+                    mSearchManager.cancelSearch();
+                    return;
+                }
+                if (isHomeDashboardVisible()) {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                    return;
+                }
+                if (popDir()) {
+                    return;
+                }
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putBoolean(STATE_HOME_DASHBOARD_VISIBLE, mHomeDashboardVisible);
     }
 
     private AppsRowManager getAppsRowManager() {
@@ -419,6 +560,12 @@ public class FilesActivity extends BaseActivity implements AbstractActionHandler
             default:
                 return super.onKeyShortcut(keyCode, event);
         }
+    }
+
+    @Override
+    public void onRootPicked(RootInfo root) {
+        hideHomeDashboard();
+        super.onRootPicked(root);
     }
 
     @Override

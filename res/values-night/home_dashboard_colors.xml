@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <color name="home_dashboard_bg">#121212</color>
+    <color name="home_card_surface">#2D2E30</color>
+    <color name="home_card_internal">#8AB4F8</color>
+    <color name="home_card_external">#81C995</color>
+    <color name="home_accent_lime">#81C995</color>
+    <color name="home_accent_teal">#78D9EC</color>
+    <color name="home_favorite_circle">#3C4043</color>
+    <color name="home_text_on_light">#202124</color>
+    <color name="home_text_primary">#E8EAED</color>
+    <color name="home_text_secondary">#9AA0A6</color>
+    <color name="home_folder_icon_bg">#394457</color>
+    <color name="home_ring_track">#3C4043</color>
+    <color name="home_ring_internal">#8AB4F8</color>
+    <color name="home_ring_external">#81C995</color>
+</resources>

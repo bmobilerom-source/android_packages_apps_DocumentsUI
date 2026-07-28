@@ -277,8 +277,14 @@ public class NavigationViewManager implements AppBarLayout.OnOffsetChangedListen
                     ? mEnv.getCurrentRoot().title : mState.stack.getTitle();
             if (VERBOSE) Log.v(TAG, "New toolbar title is: " + title);
             mToolbar.setTitle(title);
-            mBreadcrumb.show(true);
-            mBreadcrumb.postUpdate();
+            // At root of a location the toolbar title already names it — skip the
+            // redundant accent-colored breadcrumb row (Google Files-style).
+            if (mState.stack.size() <= 1) {
+                mBreadcrumb.show(false);
+            } else {
+                mBreadcrumb.show(true);
+                mBreadcrumb.postUpdate();
+            }
         }
     }
 

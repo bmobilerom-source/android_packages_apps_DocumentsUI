@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="home_dashboard_title">File Manager</string>
+    <string name="home_storage_internal">Internal</string>
+    <string name="home_storage_external">External</string>
+    <string name="home_phone_memory">Phone Memory</string>
+    <string name="home_memory_card">Memory Card</string>
+    <string name="home_used_free_fmt">%1$s used · %2$s free</string>
+    <string name="home_capacity_fmt">%1$s</string>
+    <string name="home_my_favorites">My Favorites</string>
+    <string name="home_favorite_pictures">Pictures</string>
+    <string name="home_favorite_video">Video</string>
+    <string name="home_favorite_music">Music</string>
+    <string name="home_my_folders">My Folders</string>
+    <string name="home_create">Create</string>
+    <string name="home_create_document">Create document</string>
+    <string name="home_create_folder">New folder</string>
+    <string name="home_create_text_document">Text document</string>
+    <string name="home_create_name_hint">Name</string>
+    <string name="home_storage_unavailable">Unavailable</string>
+    <string name="home_open_drawer">Open navigation drawer</string>
+    <string name="home_search">Search</string>
+</resources>

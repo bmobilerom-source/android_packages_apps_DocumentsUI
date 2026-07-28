@@ -39,9 +39,10 @@
 
             <FrameLayout
                 android:id="@+id/container_roots"
-                android:layout_width="256dp"
+                android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/space_medium_1"
+                android:paddingTop="4dp"
                 />
 
             <LinearLayout
@@ -96,6 +97,15 @@
                         android:clipToPadding="false"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+
+                    <FrameLayout
+                        android:id="@+id/container_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:elevation="8dp" />
 
                 </FrameLayout>
 

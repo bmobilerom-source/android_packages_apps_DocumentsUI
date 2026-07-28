@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <dimen name="home_dashboard_padding">20dp</dimen>
+    <dimen name="home_card_radius">28dp</dimen>
+    <dimen name="home_card_height">96dp</dimen>
+    <dimen name="home_favorite_size">72dp</dimen>
+    <dimen name="home_ring_size">120dp</dimen>
+    <dimen name="home_ring_stroke">14dp</dimen>
+    <dimen name="home_section_spacing">24dp</dimen>
+    <dimen name="home_create_fab_margin">24dp</dimen>
+</resources>

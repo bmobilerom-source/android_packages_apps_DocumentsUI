@@ -26,7 +26,7 @@
 
         <!-- Color section -->
         <item name="android:colorAccent">@color/primary</item>
-        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:colorBackground">@color/app_background_color</item>
         <item name="android:colorBackgroundFloating">@color/background_floating</item>
         <item name="android:colorControlHighlight">@color/ripple_material_light</item>
         <item name="android:colorControlActivated">@color/primary</item>
@@ -54,9 +54,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
 
-        <!-- For material design widget, chips, buttons, not support attr-->
+        <!-- DynamicColors rematerializes these; keep sensible fallbacks. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorAccent">@color/primary</item>
+        <item name="android:colorBackground">@color/app_background_color</item>
+        <item name="colorSurface">@color/app_background_color</item>
+        <item name="colorSurfaceContainer">@color/background_floating</item>
 
         <!-- TODO need to solve the error handle in GridItemThumbnail -->
         <item name="gridItemTint">@color/item_doc_grid_tint</item>

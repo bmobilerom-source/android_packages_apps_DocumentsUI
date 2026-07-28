@@ -27,7 +27,10 @@
     <bool name="full_bar_search_view">true</bool>
 
     <!-- Indicates if showing as search bar design -->
-    <bool name="show_search_bar">false</bool>
+    <bool name="show_search_bar">true</bool>
+
+    <!-- FilesActivity home dashboard (storage cards / favorites / create). -->
+    <bool name="config_files_home_dashboard">true</bool>
 
     <!-- Indicates if showing hidden files by default -->
     <bool name="show_hidden_files_by_default">false</bool>

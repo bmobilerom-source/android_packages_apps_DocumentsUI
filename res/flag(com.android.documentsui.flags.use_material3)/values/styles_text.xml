@@ -21,9 +21,9 @@
 
     <style name="SectionHeader" parent="@style/TextAppearance.Material3.TitleMedium">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
         <item name="fontFamily">@string/config_fontFamilyMedium</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="SortList" parent="@style/TextAppearance.AppCompat.Subhead">
@@ -70,25 +70,28 @@
         <item name="fontFamily">@string/config_fontFamilyMedium</item>
     </style>
 
-    <style name="DrawerMenuTitle" parent="@style/TextAppearance.Material3.TitleLarge">
-        <item name="android:textSize">24sp</item>
+    <style name="DrawerMenuTitle" parent="@style/TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
         <item name="fontFamily">@string/config_fontFamilyMedium</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 
-    <style name="DrawerMenuHeader" parent="@style/TextAppearance.Material3.BodyLarge">
+    <style name="DrawerMenuHeader" parent="@style/TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
         <item name="fontFamily">@string/config_fontFamilyMedium</item>
     </style>
 
-    <style name="DrawerMenuPrimary" parent="@style/TextAppearance.Material3.BodyMedium">
+    <style name="DrawerMenuPrimary" parent="@style/TextAppearance.Material3.TitleMedium">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/item_root_primary_text</item>
         <item name="fontFamily">@string/config_fontFamilyMedium</item>
     </style>
 
-    <style name="DrawerMenuSecondary" parent="@style/TextAppearance.Material3.BodyMedium">
+    <style name="DrawerMenuSecondary" parent="@style/TextAppearance.Material3.BodySmall">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/item_root_secondary_text</item>
         <item name="fontFamily">@string/config_fontFamily</item>

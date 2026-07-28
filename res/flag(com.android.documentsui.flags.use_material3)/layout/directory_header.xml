@@ -68,7 +68,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/root_info_header_horizontal_padding"
         android:layout_marginEnd="@dimen/root_info_header_horizontal_padding"
+        android:layout_marginTop="4dp"
         android:minHeight="@dimen/root_info_header_height"
+        android:gravity="center_vertical"
         android:accessibilityHeading="true">
 
         <TextView

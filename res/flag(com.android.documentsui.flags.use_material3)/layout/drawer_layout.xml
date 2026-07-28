@@ -51,6 +51,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+                <FrameLayout
+                    android:id="@+id/container_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:elevation="8dp" />
+
                 <!-- Drawer edge is a placeholder view used to capture hovering
                      event on view edge to open the drawer. (b/28345294) -->
                 <View
@@ -74,27 +83,34 @@
 
         <LinearLayout
             android:id="@+id/drawer_roots"
-            android:layout_width="256dp"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:orientation="vertical"
-            android:elevation="0dp"
-            android:background="?android:attr/colorBackground">
+            android:elevation="8dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:fitsSystemWindows="true">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/roots_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="?android:attr/colorBackground"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@android:color/transparent"
                 android:elevation="0dp"
                 app:titleTextAppearance="@style/DrawerMenuTitle"
-                app:titleTextColor="?android:colorAccent"/>
+                app:titleTextColor="?android:attr/textColorPrimary"
+                app:contentInsetStart="20dp"
+                app:contentInsetStartWithNavigation="20dp"/>
 
             <FrameLayout
                 android:id="@+id/container_roots"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingTop="4dp"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 

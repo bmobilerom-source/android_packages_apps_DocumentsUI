@@ -1,78 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2024 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
 -->
-
-<!-- FYI: This layout has an extra top level container view that was previously used
-     to allow for the insertion of debug info. The debug info is now gone, but the
-     container remains because there is a high likelihood of UI regression relating
-     to focus and selection states, some of which are specific to keyboard
-     when touch mode is not enable. So, if you, heroic engineer of the future,
-     decide to rip these out, please be sure to check out focus and keyboards. -->
+<!-- Google Files-style folder tile: tonal fill, no accent outline. -->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="6dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="0dp">
+    app:cardBackgroundColor="@color/background_floating"
+    app:cardCornerRadius="@dimen/grid_item_radius"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
 
-    <com.google.android.material.card.MaterialCardView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0dp"
         android:duplicateParentState="true"
-        app:cardElevation="0dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="?android:strokeColor">
+        android:minHeight="72dp">
 
-        <!-- The height is 48px.
-             paddingTop (9dp) + @dimen/check_icon_size (30dp) + paddingBottom (9dp) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:background="?android:attr/colorBackground"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:duplicateParentState="true">
 
             <FrameLayout
                 android:id="@+id/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:pointerIcon="hand"
-                android:paddingBottom="9dp"
-                android:paddingStart="9dp"
-                android:paddingEnd="8dp"
-                android:paddingTop="9dp">
+                android:background="@drawable/folder_icon_background">
 
                 <ImageView
                     android:id="@+id/icon_mime_sm"
-                    android:layout_width="@dimen/grid_item_icon_size"
-                    android:layout_height="@dimen/grid_item_icon_size"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:contentDescription="@null"
-                    android:scaleType="centerInside"/>
+                    android:scaleType="centerInside"
+                    android:tint="@color/primary"/>
 
                 <ImageView
                     android:id="@+id/icon_check"
                     android:layout_width="@dimen/check_icon_size"
                     android:layout_height="@dimen/check_icon_size"
+                    android:layout_gravity="center"
                     android:alpha="0"
                     android:contentDescription="@null"
                     android:scaleType="fitCenter"
@@ -84,33 +67,33 @@
                 android:id="@+id/icon_profile_badge"
                 android:layout_height="@dimen/briefcase_icon_size"
                 android:layout_width="@dimen/briefcase_icon_size"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="@dimen/briefcase_icon_margin"
                 android:src="@drawable/ic_briefcase"
-                android:tint="?android:attr/colorAccent"
+                android:tint="@color/primary"
                 android:contentDescription="@string/a11y_work"/>
 
             <TextView
                 android:id="@android:id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="14dp"
                 android:ellipsize="end"
-                android:singleLine="true"
+                android:maxLines="2"
                 android:textAlignment="viewStart"
-                android:textAppearance="@style/CardPrimaryText"
-                android:layout_marginBottom="9dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginTop="9dp"/>
+                android:textAppearance="@style/CardPrimaryText"/>
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <!-- Focus / selection border overlay -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/item_doc_grid_border_rounded"
+            android:contentDescription="@null"
+            android:duplicateParentState="true"/>
 
-    <!-- An overlay that draws the item border when it is focused. -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/item_doc_grid_border_rounded"
-        android:contentDescription="@null"
-        android:duplicateParentState="true"/>
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

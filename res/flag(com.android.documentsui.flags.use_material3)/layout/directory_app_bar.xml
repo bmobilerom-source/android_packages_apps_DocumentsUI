@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_margin="@dimen/search_bar_margin"
-            android:background="?android:attr/colorBackground"
+            android:background="@drawable/search_bar_background"
             android:theme="?actionBarTheme"
             android:popupTheme="?actionBarPopupTheme"
             android:elevation="@dimen/search_bar_elevation"
@@ -55,6 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/search_bar_hint"
                 android:textAppearance="@style/SearchBarTitle" />
 

@@ -50,8 +50,8 @@
     <dimen name="list_divider_inset">72dp</dimen>
     <dimen name="dir_elevation">8dp</dimen>
     <dimen name="drag_shadow_size">120dp</dimen>
-    <dimen name="grid_item_elevation">2dp</dimen>
-    <dimen name="grid_item_radius">2dp</dimen>
+    <dimen name="grid_item_elevation">0dp</dimen>
+    <dimen name="grid_item_radius">20dp</dimen>
     <dimen name="max_drawer_width">280dp</dimen>
     <dimen name="briefcase_icon_margin">8dp</dimen>
     <dimen name="briefcase_icon_size">14dp</dimen>
@@ -89,8 +89,8 @@
 
     <dimen name="inspector_header_height">280dp</dimen>
 
-    <dimen name="root_info_header_height">60dp</dimen>
-    <dimen name="root_info_header_horizontal_padding">24dp</dimen>
+    <dimen name="root_info_header_height">48dp</dimen>
+    <dimen name="root_info_header_horizontal_padding">20dp</dimen>
 
     <!-- TODO(b/379776735): remove this block after M3 uplift -->
     <dimen name="search_chip_group_margin">20dp</dimen>
@@ -98,9 +98,9 @@
     <dimen name="search_chip_half_spacing">4dp</dimen>
     <dimen name="search_chip_icon_padding">4dp</dimen>
     <!-- block end -->
-    <dimen name="search_chip_radius">8dp</dimen>
+    <dimen name="search_chip_radius">28dp</dimen>
     <dimen name="search_chip_group_margin_horizontal">@dimen/space_small_4</dimen>
-    <dimen name="search_chip_group_margin_vertical">@dimen/space_small_1</dimen>
+    <dimen name="search_chip_group_margin_vertical">@dimen/space_extra_small_4</dimen>
 
     <dimen name="dialog_content_padding_top">18dp</dimen>
     <dimen name="dialog_content_padding_bottom">24dp</dimen>
@@ -119,7 +119,7 @@
     <dimen name="apps_row_item_text_margin_horizontal">8dp</dimen>
 
     <dimen name="search_bar_elevation">3dp</dimen>
-    <dimen name="search_bar_radius">8dp</dimen>
+    <dimen name="search_bar_radius">28dp</dimen>
     <dimen name="search_bar_background_margin_start">0dp</dimen>
     <dimen name="search_bar_background_margin_end">0dp</dimen>
     <dimen name="search_bar_margin">@dimen/space_extra_small_6</dimen>

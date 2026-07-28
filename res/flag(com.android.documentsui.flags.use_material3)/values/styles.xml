@@ -36,11 +36,12 @@
         <item name="android:layout_margin">@dimen/search_bar_margin</item>
     </style>
 
-    <style name="CardViewStyle" parent="@style/Widget.Material3.CardView.Outlined">
-        <item name="cardBackgroundColor">@color/app_background_color</item>
+    <style name="CardViewStyle" parent="@style/Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/background_floating</item>
         <item name="cardPreventCornerOverlap">false</item>
         <item name="cardCornerRadius">@dimen/grid_item_radius</item>
-        <item name="cardElevation">@dimen/grid_item_elevation</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
     </style>
 
     <style name="TrimmedHorizontalProgressBar" parent="android:Widget.Material.ProgressBar.Horizontal">
@@ -122,8 +123,14 @@
 
     <style name="SearchChipItemStyle" parent="@style/Widget.Material3.Chip.Filter">
         <item name="android:textAppearance">@style/SearchChipText</item>
+        <item name="android:textColor">@color/search_chip_text_color</item>
         <item name="chipBackgroundColor">@color/search_chip_background_color</item>
         <item name="chipStrokeColor">@color/search_chip_stroke_color</item>
+        <item name="chipStrokeWidth">1dp</item>
         <item name="chipCornerRadius">@dimen/search_chip_radius</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipIconSize">18dp</item>
+        <item name="chipIconTint">@color/search_chip_icon_tint</item>
+        <item name="ensureMinTouchTargetSize">true</item>
     </style>
 </resources>

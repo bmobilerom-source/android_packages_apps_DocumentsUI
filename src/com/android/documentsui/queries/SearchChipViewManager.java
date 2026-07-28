@@ -405,6 +405,10 @@ public class SearchChipViewManager {
             // get the icon drawable with the first mimeType in chipData
             chipIcon = IconUtils.loadMimeIcon(context, chipData.getMimeTypes()[0]);
         }
+        if (chipIcon != null) {
+            chipIcon = chipIcon.mutate();
+            chipIcon.setTintList(context.getColorStateList(R.color.search_chip_icon_tint));
+        }
         chip.setChipIcon(chipIcon);
         chip.setOnClickListener(this::onChipClick);
 

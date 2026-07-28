@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Light / default Monet-friendly tokens. Layouts prefer ?attr where possible. -->
+<resources>
+    <color name="home_dashboard_bg">@android:color/white</color>
+    <color name="home_card_surface">#F1F3F4</color>
+    <color name="home_card_internal">#A8C7FA</color>
+    <color name="home_card_external">#C4EED0</color>
+    <color name="home_accent_lime">#CEEAD6</color>
+    <color name="home_accent_teal">#78D9EC</color>
+    <color name="home_favorite_circle">#FFFFFF</color>
+    <color name="home_text_on_light">#1F1F1F</color>
+    <color name="home_text_primary">#1F1F1F</color>
+    <color name="home_text_secondary">#5F6368</color>
+    <color name="home_folder_icon_bg">#D3E3FD</color>
+    <color name="home_ring_track">#E8EAED</color>
+    <color name="home_ring_internal">#1A73E8</color>
+    <color name="home_ring_external">#1E8E3E</color>
+</resources>

@@ -842,7 +842,10 @@ public abstract class BaseActivity
             case RootInfo.TYPE_IMAGES:
             case RootInfo.TYPE_VIDEO:
             case RootInfo.TYPE_AUDIO:
-                result = rootTitle;
+                // Avoid repeating the root name under the toolbar title.
+                result = mState.stack.size() <= 1
+                        ? getString(R.string.root_info_header_folders)
+                        : getHeaderStorageTitle(rootTitle);
                 break;
             case RootInfo.TYPE_DOWNLOADS:
                 result = getHeaderDownloadsTitle();
@@ -881,8 +884,11 @@ public abstract class BaseActivity
     }
 
     private String getHeaderDownloadsTitle() {
-        return getString(mState.isPhotoPicking()
-                ? R.string.root_info_header_image_downloads : R.string.root_info_header_downloads);
+        if (mState.isPhotoPicking()) {
+            return getString(R.string.root_info_header_image_downloads);
+        }
+        // Toolbar already says "Downloads" — keep the section label generic.
+        return getString(R.string.root_info_header_folders);
     }
 
     private String getHeaderStorageTitle(String rootTitle) {
@@ -890,10 +896,11 @@ public abstract class BaseActivity
             final int resId = mState.isPhotoPicking()
                     ? R.string.root_info_header_image_folder : R.string.root_info_header_folder;
             return getString(resId, getCurrentTitle());
+        } else if (mState.isPhotoPicking()) {
+            return getString(R.string.root_info_header_image_storage, rootTitle);
         } else {
-            final int resId = mState.isPhotoPicking()
-                    ? R.string.root_info_header_image_storage : R.string.root_info_header_storage;
-            return getString(resId, rootTitle);
+            // Avoid "Files on <device>" repeating the toolbar title.
+            return getString(R.string.root_info_header_folders);
         }
     }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Monet-aligned M3 colors for browse UI (API 31+). -->
+<resources>
+  <color name="app_background_color">@android:color/system_neutral1_10</color>
+  <color name="background_floating">@android:color/system_neutral1_50</color>
+  <color name="primary">@android:color/system_accent1_600</color>
+  <color name="secondary">@android:color/system_accent1_100</color>
+  <color name="hairline">@android:color/system_neutral2_100</color>
+  <color name="list_item_selected_background_color">@android:color/system_accent1_100</color>
+  <color name="color_surface_header">@android:color/system_neutral1_10</color>
+  <color name="tab_selected_text_color">@android:color/system_accent1_600</color>
+  <color name="work_profile_button_stroke_color">@android:color/system_accent1_600</color>
+  <color name="fragment_pick_active_button_color">@android:color/system_accent1_600</color>
+</resources>

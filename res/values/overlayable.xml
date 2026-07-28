@@ -63,6 +63,7 @@
             <item type="bool" name="handle_view_downloads_intent"/>
             <item type="bool" name="is_launcher_enabled"/>
             <item type="bool" name="show_search_bar"/>
+            <item type="bool" name="config_files_home_dashboard"/>
             <!-- END BOOLEAN CONFIG -->
 
             <!-- START STRING CONFIG -->

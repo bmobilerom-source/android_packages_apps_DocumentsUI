@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <color name="drawer_item_selected_bg">@android:color/system_accent1_700</color>
+    <color name="drawer_item_selected_fg">@android:color/system_accent1_100</color>
+</resources>
